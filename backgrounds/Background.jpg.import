@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rombito.png-2d0906a10f2f1f93cb3da5eccc4c5e22.stex"
+path="res://.import/Background.jpg-377df106d779d17c794dff776d5cb298.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/rombito.png"
-dest_files=[ "res://.import/rombito.png-2d0906a10f2f1f93cb3da5eccc4c5e22.stex" ]
+source_file="res://backgrounds/Background.jpg"
+dest_files=[ "res://.import/Background.jpg-377df106d779d17c794dff776d5cb298.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/negro.png-52968bb67200de14a2ca4c5ce819eb14.stex"
+path="res://.import/GameOver.jpg-7ac3db42743a1aebaa83b36ee2a97767.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/negro.png"
-dest_files=[ "res://.import/negro.png-52968bb67200de14a2ca4c5ce819eb14.stex" ]
+source_file="res://backgrounds/GameOver.jpg"
+dest_files=[ "res://.import/GameOver.jpg-7ac3db42743a1aebaa83b36ee2a97767.stex" ]
 
 [params]
 

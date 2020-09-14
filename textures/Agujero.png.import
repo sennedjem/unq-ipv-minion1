@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/triangulito.png-7756cdeb14c2c009e766ec49a5c3d3cb.stex"
+path="res://.import/Agujero.png-2f5540404503f92f0c6bd7a6c0ff4283.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/triangulito.png"
-dest_files=[ "res://.import/triangulito.png-7756cdeb14c2c009e766ec49a5c3d3cb.stex" ]
+source_file="res://textures/Agujero.png"
+dest_files=[ "res://.import/Agujero.png-2f5540404503f92f0c6bd7a6c0ff4283.stex" ]
 
 [params]
 

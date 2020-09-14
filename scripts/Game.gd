@@ -8,15 +8,14 @@ var agujeros = []
 var rombitos = []
 var triangulitos = []
 var randomizer = RandomNumberGenerator.new()
-var textura_negro = preload("res://textures/negro.png")
-var scale_negro = Vector2(0.2,0.2)
+var texture_agujero = preload("res://textures/Agujero.png")
 var maxQntyTriangulitos = 10
 var score = 0
 var maxScores = [0,0,0,0,0,0,0,0,0,0]
 
 func _process(delta):
 	for triangle in triangulitos:
-		triangle.player_position = $Personaje.position
+		triangle.player_position = $Violeta.position
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -51,6 +50,7 @@ func _instance_rombitos():
 		add_child(rombitos[i])	
 		
 func _instance_agujeros():
+	var scale_negro = Vector2(0.2,0.2)
 	var position_negro 
 	for i in range(0, 5):
 		var agujero
@@ -58,11 +58,19 @@ func _instance_agujeros():
 		position_negro = _get_position_vector()
 		agujero.set_position(position_negro)
 		agujero.z_index=-1
-		agujero.set_texture(textura_negro)
+		agujero.set_texture(texture_agujero)
 		agujero.set_scale(scale_negro)
 		agujeros.insert(i,agujero) 
 		add_child(agujeros[i])
-
+		
+func _instance_new_triangle():
+	var trianguloCreado = triangulito.instance()
+	var position_triangulo = _generate_random_vector()
+	var agujero = agujeros[round(randomizer.randf_range(0,4))]
+	trianguloCreado.set_position(agujero.position)
+	trianguloCreado.connect("body_entered",self,"_triangulo_touched")
+	triangulitos.insert(0,trianguloCreado) 
+	add_child(triangulitos[0])	
 
 func _on_Timer_timeout():
 	_instance_rombitos()
@@ -72,15 +80,6 @@ func _on_TriangulosTimer_timeout():
 		_delete_older_triangle()
 	else:	
 		_instance_new_triangle()
-
-func _instance_new_triangle():
-	var trianguloCreado = triangulito.instance()
-	var position_triangulo = _generate_random_vector()
-	var agujero = agujeros[round(randomizer.randf_range(0,4))]
-	trianguloCreado.set_position(agujero.position)
-	trianguloCreado.connect("body_entered",self,"_triangulo_touched")
-	triangulitos.insert(0,trianguloCreado) 
-	add_child(triangulitos[0])	
 
 func _full_triangles():
 	return triangulitos.size()==maxQntyTriangulitos
@@ -93,43 +92,53 @@ func _delete_older_triangle():
 func _generate_random_vector():
 	return Vector2(randomizer.randf_range(100, 868),randomizer.randf_range(100, 464))
 
+func _clean_array(arrayName):
+	for i in self[arrayName]:
+		i.hide()
+		i.queue_free()
+	self[arrayName] = []	
+
+func _clean_game_scene():
+	$Violeta.hide()
+	$Score.hide()
+	$GameBackground.hide()
+	_clean_array("agujeros")
+	_clean_array("triangulitos")
+	_clean_array("rombitos")
+	
+func sort_ascending(a, b):
+	if a > b:
+		return true
+	return false	
+	
+func _update_score():
+	maxScores.append(score)
+	maxScores.sort_custom(self,"sort_ascending")
+	score = 0
+	$Score/ScoreQuantity.text = str(score)
+	
+func _show_game_over_screen():
+	$GameOver/PlayAgainButton.show()
+	$GameOver/GameOverBackground.show()
+	$GameOver/HighScoresButton.show()
+
 func _game_over():
 	$TriangulosTimer.stop()
 	$RombitosTimer.stop()
-	for agujero in agujeros:
-		agujero.hide()
-		agujero.queue_free()
-	agujeros = []
-	for triangulo in triangulitos:
-		triangulo.hide()
-		triangulo.queue_free()
-	triangulitos = []
-	for rombito in rombitos:
-		rombito.hide()
-		rombito.queue_free()
-	rombitos = []
-	$Personaje.hide()
-	$Score.hide()
-	$background.hide()
-	maxScores.append(score)
-	maxScores.sort_custom(self,"sort_ascending")
-	print(maxScores)
-	score = 0
-	$Score/ScoreQuantity.text = str(score)
-	$GameOver/Button.show()
-	$GameOver/gameover.show()
-	$GameOver/Button2.show()
+	_clean_game_scene()
+	_update_score()
+	_show_game_over_screen()
 		
 func _initialize_game():
-	$HighScores/fondonegro.hide()
+	$HighScores/HighScoreBackground.hide()
 	$HighScores/PlayAgainButton.hide()
-	$background.show()
+	$GameBackground.show()
 	$Score.show()
-	$Personaje.show()
-	$Personaje.set_position(Vector2(0,0))
-	$GameOver/Button.hide()
-	$GameOver/gameover.hide()
-	$GameOver/Button2.hide()
+	$Violeta.show()
+	$Violeta.set_position(Vector2(0,0))
+	$GameOver/PlayAgainButton.hide()
+	$GameOver/GameOverBackground.hide()
+	$GameOver/HighScoresButton.hide()
 	$HighScores/HighScores.hide()
 	$HighScores/FirstPosition.hide()
 	$HighScores/SecondPosition.hide()
@@ -147,23 +156,18 @@ func _initialize_game():
 	$TriangulosTimer.start()
 		
 func _triangulo_touched(body):
-	if(body.name == "Personaje"):
+	if(body.name == "Violeta"):
 		_game_over()
-
-func sort_ascending(a, b):
-	if a > b:
-		return true
-	return false
 
 func _on_Button_pressed():
 	_ready()
 
 
 func _on_Button2_pressed():
-	$GameOver/Button.hide()
-	$GameOver/gameover.hide()
-	$GameOver/Button2.hide()
-	$HighScores/fondonegro.show()
+	$GameOver/PlayAgainButton.hide()
+	$GameOver/GameOverBackground.hide()
+	$GameOver/HighScoresButton.hide()
+	$HighScores/HighScoreBackground.show()
 	$HighScores/PlayAgainButton.show()
 	$HighScores/HighScores.show()
 	$HighScores/FirstPosition/Score.text = str(maxScores[0])

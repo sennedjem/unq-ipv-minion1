@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gameover.jpg-2ac0cb2ce88e550dfe45d4d1fed636b4.stex"
+path="res://.import/Rombito.png-926b7e1c1e5ff9ae8968382e9d20d45e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://backgrounds/gameover.jpg"
-dest_files=[ "res://.import/gameover.jpg-2ac0cb2ce88e550dfe45d4d1fed636b4.stex" ]
+source_file="res://textures/Rombito.png"
+dest_files=[ "res://.import/Rombito.png-926b7e1c1e5ff9ae8968382e9d20d45e.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background.jpg-69af3d0899161eba641471de90753d70.stex"
+path="res://.import/Triangulito.png-c6bd5f697858fd806133ee19b5e8854c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://backgrounds/background.jpg"
-dest_files=[ "res://.import/background.jpg-69af3d0899161eba641471de90753d70.stex" ]
+source_file="res://textures/Triangulito.png"
+dest_files=[ "res://.import/Triangulito.png-c6bd5f697858fd806133ee19b5e8854c.stex" ]
 
 [params]
 

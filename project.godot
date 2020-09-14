@@ -16,5 +16,5 @@ _global_script_class_icons={
 [application]
 
 config/name="IPV UNQ: Minion 1"
-run/main_scene="res://scenes/Node2D.tscn"
-config/icon="res://textures/violeta.png"
+run/main_scene="res://scenes/Game.tscn"
+config/icon="res://textures/Violeta.png"
