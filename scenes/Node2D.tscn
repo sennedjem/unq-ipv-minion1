@@ -1,19 +1,19 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://triangulito.tscn" type="PackedScene" id=1]
-[ext_resource path="res://violeta.png" type="Texture" id=2]
-[ext_resource path="res://rombito.tscn" type="PackedScene" id=3]
-[ext_resource path="res://background.jpg" type="Texture" id=4]
-[ext_resource path="res://Node2D.gd" type="Script" id=5]
-[ext_resource path="res://gameover.jpg" type="Texture" id=6]
-[ext_resource path="res://peronsaje.gd" type="Script" id=7]
-[ext_resource path="res://font.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://score.tres" type="DynamicFont" id=9]
-[ext_resource path="res://fondonegro.jpg" type="Texture" id=10]
+[ext_resource path="res://fonts/score.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/rombito.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/triangulito.tscn" type="PackedScene" id=3]
+[ext_resource path="res://backgrounds/gameover.jpg" type="Texture" id=4]
+[ext_resource path="res://scripts/peronsaje.gd" type="Script" id=5]
+[ext_resource path="res://fonts/font.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://scripts/Node2D.gd" type="Script" id=7]
+[ext_resource path="res://textures/violeta.png" type="Texture" id=8]
+[ext_resource path="res://backgrounds/background.jpg" type="Texture" id=9]
+[ext_resource path="res://backgrounds/fondonegro.jpg" type="Texture" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -24,20 +24,20 @@ radius = 28.4944
 
 [sub_resource type="DynamicFont" id=3]
 size = 48
-font_data = ExtResource( 8 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 21
-font_data = ExtResource( 8 )
+font_data = ExtResource( 6 )
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource( 5 )
-rombito = ExtResource( 3 )
-triangulito = ExtResource( 1 )
+script = ExtResource( 7 )
+rombito = ExtResource( 2 )
+triangulito = ExtResource( 3 )
 
 [node name="Personaje" type="KinematicBody2D" parent="."]
 position = Vector2( 0.000488281, -0.000442505 )
-script = ExtResource( 7 )
+script = ExtResource( 5 )
 
 [node name="Dash" type="Timer" parent="Personaje"]
 wait_time = 0.4
@@ -57,7 +57,7 @@ margin_top = 39.0
 margin_right = 98.0
 margin_bottom = 57.0
 rect_scale = Vector2( 2, 2 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "Score:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -68,7 +68,7 @@ margin_left = 76.5
 margin_top = 0.5
 margin_right = 126.5
 margin_bottom = 22.5
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -79,7 +79,7 @@ visible = false
 position = Vector2( 516, 300 )
 scale = Vector2( 0.79375, 0.833333 )
 z_index = -2
-texture = ExtResource( 4 )
+texture = ExtResource( 9 )
 
 [node name="RombitosTimer" type="Timer" parent="."]
 wait_time = 6.0
@@ -93,7 +93,7 @@ wait_time = 1.5
 visible = false
 position = Vector2( 512.5, 301 )
 scale = Vector2( 1.7339, 1.8012 )
-texture = ExtResource( 6 )
+texture = ExtResource( 4 )
 
 [node name="Button" type="Button" parent="GameOver"]
 process_priority = 1
@@ -155,7 +155,7 @@ __meta__ = {
 margin_left = 32.0
 margin_right = 101.0
 margin_bottom = 47.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "100000
 "
 __meta__ = {
@@ -177,7 +177,7 @@ __meta__ = {
 margin_left = 32.0
 margin_right = 101.0
 margin_bottom = 47.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "100000
 "
 __meta__ = {
@@ -199,7 +199,7 @@ __meta__ = {
 margin_left = 32.0
 margin_right = 101.0
 margin_bottom = 47.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "100000
 "
 __meta__ = {
@@ -221,7 +221,7 @@ __meta__ = {
 margin_left = 32.0
 margin_right = 101.0
 margin_bottom = 47.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "100000
 "
 __meta__ = {
@@ -243,7 +243,7 @@ __meta__ = {
 margin_left = 32.0
 margin_right = 101.0
 margin_bottom = 47.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "100000
 "
 __meta__ = {
@@ -265,7 +265,7 @@ __meta__ = {
 margin_left = 32.0
 margin_right = 101.0
 margin_bottom = 47.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "100000
 "
 __meta__ = {
@@ -287,7 +287,7 @@ __meta__ = {
 margin_left = 32.0
 margin_right = 101.0
 margin_bottom = 47.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "100000
 "
 __meta__ = {
@@ -309,7 +309,7 @@ __meta__ = {
 margin_left = 32.0
 margin_right = 101.0
 margin_bottom = 47.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "100000
 "
 __meta__ = {
@@ -331,7 +331,7 @@ __meta__ = {
 margin_left = 32.0
 margin_right = 101.0
 margin_bottom = 47.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "100000
 "
 __meta__ = {
@@ -353,7 +353,7 @@ __meta__ = {
 margin_left = 32.0
 margin_right = 101.0
 margin_bottom = 47.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 1 )
 text = "100000
 "
 __meta__ = {

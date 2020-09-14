@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/negro.png-522abea81e3235179a8e69bcb20113dc.stex"
+path="res://.import/fondonegro.jpg-8addd2d9cd59f89d622b2373b58387d1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://negro.png"
-dest_files=[ "res://.import/negro.png-522abea81e3235179a8e69bcb20113dc.stex" ]
+source_file="res://backgrounds/fondonegro.jpg"
+dest_files=[ "res://.import/fondonegro.jpg-8addd2d9cd59f89d622b2373b58387d1.stex" ]
 
 [params]
 

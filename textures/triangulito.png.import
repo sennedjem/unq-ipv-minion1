@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rombito.png-52e879ad9b58ddff6eb6a8a0f61790f8.stex"
+path="res://.import/triangulito.png-7756cdeb14c2c009e766ec49a5c3d3cb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rombito.png"
-dest_files=[ "res://.import/rombito.png-52e879ad9b58ddff6eb6a8a0f61790f8.stex" ]
+source_file="res://textures/triangulito.png"
+dest_files=[ "res://.import/triangulito.png-7756cdeb14c2c009e766ec49a5c3d3cb.stex" ]
 
 [params]
 

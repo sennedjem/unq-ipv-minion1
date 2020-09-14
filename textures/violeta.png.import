@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/triangulito.png-50016ca91719f75c5d8afd42bb41ad7e.stex"
+path="res://.import/violeta.png-a79fbc45200bb1a59088fa3424ebe8fd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://triangulito.png"
-dest_files=[ "res://.import/triangulito.png-50016ca91719f75c5d8afd42bb41ad7e.stex" ]
+source_file="res://textures/violeta.png"
+dest_files=[ "res://.import/violeta.png-a79fbc45200bb1a59088fa3424ebe8fd.stex" ]
 
 [params]
 

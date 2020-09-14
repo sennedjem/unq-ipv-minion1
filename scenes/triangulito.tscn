@@ -1,7 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://triangulito.png" type="Texture" id=1]
-[ext_resource path="res://triangulito.gd" type="Script" id=2]
+[ext_resource path="res://textures/triangulito.png" type="Texture" id=1]
+[ext_resource path="res://scripts/triangulito.gd" type="Script" id=2]
+
+
+
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 56.1129
