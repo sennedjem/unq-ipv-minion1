@@ -30,6 +30,6 @@ Los rombitos son unos elementos que aperecen en el mapa con el unico fin de ser 
 
 ### Agujeros negros
 
-![Agujero negro(https://github.com/sennedjem/unq-ipv-minion1/blob/master/negro.png)
+![Agujero negro](https://github.com/sennedjem/unq-ipv-minion1/blob/master/negro.png)
 
 A lo largo del mapa se encontraran 5 agujeros negros, los **Triangulitos** spawnean en cada uno de esos agujeros.
