@@ -9,9 +9,12 @@ var rombitos = []
 var triangulitos = []
 var randomizer = RandomNumberGenerator.new()
 var texture_agujero = preload("res://textures/Agujero.png")
-var maxQntyTriangulitos = 10
+var max_qnty_triangulitos = 10
 var score = 0
-var maxScores = [0,0,0,0,0,0,0,0,0,0]
+var max_scores = [0,0,0,0,0,0,0,0,0,0]
+var high_score_position_labels = [] 
+var high_score_position_text_labels = []
+
 
 func _process(delta):
 	for triangle in triangulitos:
@@ -19,13 +22,37 @@ func _process(delta):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	high_score_position_labels = [
+		$HighScores/FirstPosition,
+		$HighScores/SecondPosition,
+		$HighScores/ThirdPosition,
+		$HighScores/FourthPosition,
+		$HighScores/FifthPosition,
+		$HighScores/SixthPosition,
+		$HighScores/SeventhPosition,
+		$HighScores/EighthPosition,
+		$HighScores/NinthPosition,
+		$HighScores/TenthPosition	
+	]	
+	high_score_position_text_labels = [
+		$HighScores/FirstPosition/Score,
+		$HighScores/SecondPosition/Score,
+		$HighScores/ThirdPosition/Score,
+		$HighScores/FourthPosition/Score,
+		$HighScores/FifthPosition/Score,
+		$HighScores/SixthPosition/Score,
+		$HighScores/SeventhPosition/Score,
+		$HighScores/EighthPosition/Score,
+		$HighScores/NinthPosition/Score,
+		$HighScores/TenthPosition/Score	
+	]	
 	_initialize_game()
 	
 func _get_position_vector():
-	var vectorResultado = _generate_random_vector()
-	while(_has_anyone_closer(vectorResultado)):
-		vectorResultado = _generate_random_vector()
-	return 	vectorResultado
+	var vector_result = _generate_random_vector()
+	while(_has_anyone_closer(vector_result)):
+		vector_result = _generate_random_vector()
+	return 	vector_result
 
 func _has_anyone_closer(vector):
 	var result = false
@@ -39,38 +66,34 @@ func _rombo_touched(body):
 	$Score/ScoreQuantity.text = str(score)
 
 func _instance_rombitos():
-	var position_rombito
 	for i in range(0, 5):
-		var rombitoCreado 
-		rombitoCreado = rombito.instance()
-		position_rombito = _generate_random_vector()
-		rombitoCreado.set_position(position_rombito)
-		rombitoCreado.connect("body_entered",self,"_rombo_touched")
-		rombitos.insert(i,rombitoCreado) 
-		add_child(rombitos[i])	
+		_instance_generic(rombito.instance(),_generate_random_vector(),"rombitos",i,"_rombo_touched")
 		
 func _instance_agujeros():
-	var scale_negro = Vector2(0.2,0.2)
-	var position_negro 
 	for i in range(0, 5):
-		var agujero
-		agujero = Sprite.new()
-		position_negro = _get_position_vector()
-		agujero.set_position(position_negro)
-		agujero.z_index=-1
-		agujero.set_texture(texture_agujero)
-		agujero.set_scale(scale_negro)
-		agujeros.insert(i,agujero) 
-		add_child(agujeros[i])
+		_instance_generic(_instance_agujero(),_get_position_vector(),"agujeros",i,null)
 		
-func _instance_new_triangle():
-	var trianguloCreado = triangulito.instance()
-	var position_triangulo = _generate_random_vector()
-	var agujero = agujeros[round(randomizer.randf_range(0,4))]
-	trianguloCreado.set_position(agujero.position)
-	trianguloCreado.connect("body_entered",self,"_triangulo_touched")
-	triangulitos.insert(0,trianguloCreado) 
-	add_child(triangulitos[0])	
+func _instance_triangle():
+	var agujero = _get_random_agujero()
+	_instance_generic(triangulito.instance(),agujero.position,"triangulitos",0,"_triangulo_touched")
+
+func _instance_agujero():
+	var scale_negro = Vector2(0.2,0.2)
+	var agujero = Sprite.new()
+	agujero.z_index=-1
+	agujero.set_texture(texture_agujero)
+	agujero.set_scale(scale_negro)
+	return agujero	
+
+func _instance_generic(instance,position,array_name,array_position,collition_function):
+	instance.set_position(position)
+	if(collition_function):
+		instance.connect("body_entered",self,collition_function)
+	self[array_name].insert(array_position,instance) 
+	add_child(instance)
+		
+func _get_random_agujero():
+	return agujeros[round(randomizer.randf_range(0,4))]
 
 func _on_Timer_timeout():
 	_instance_rombitos()
@@ -79,10 +102,10 @@ func _on_TriangulosTimer_timeout():
 	if(_full_triangles()):
 		_delete_older_triangle()
 	else:	
-		_instance_new_triangle()
+		_instance_triangle()
 
 func _full_triangles():
-	return triangulitos.size()==maxQntyTriangulitos
+	return triangulitos.size()==max_qnty_triangulitos
 	
 func _delete_older_triangle():
 	var triangulo_a_borrar = triangulitos.pop_back()
@@ -112,8 +135,8 @@ func sort_ascending(a, b):
 	return false	
 	
 func _update_score():
-	maxScores.append(score)
-	maxScores.sort_custom(self,"sort_ascending")
+	max_scores.append(score)
+	max_scores.sort_custom(self,"sort_ascending")
 	score = 0
 	$Score/ScoreQuantity.text = str(score)
 	
@@ -129,27 +152,28 @@ func _game_over():
 	_update_score()
 	_show_game_over_screen()
 		
-func _initialize_game():
+func _hide_high_score_screen():
 	$HighScores/HighScoreBackground.hide()
-	$HighScores/PlayAgainButton.hide()
+	$HighScores/PlayAgainButton.hide()	
+	$HighScores/HighScores.hide()
+	for high_score_position in high_score_position_labels:
+		high_score_position.hide()	
+		
+func _show_game_scene():
 	$GameBackground.show()
 	$Score.show()
 	$Violeta.show()
-	$Violeta.set_position(Vector2(0,0))
+	$Violeta.set_position(Vector2(0,0))		
+		
+func _hide_game_over_screen():
 	$GameOver/PlayAgainButton.hide()
 	$GameOver/GameOverBackground.hide()
-	$GameOver/HighScoresButton.hide()
-	$HighScores/HighScores.hide()
-	$HighScores/FirstPosition.hide()
-	$HighScores/SecondPosition.hide()
-	$HighScores/ThirdPosition.hide()
-	$HighScores/FourthPosition.hide()
-	$HighScores/FifthPosition.hide()
-	$HighScores/SixthPosition.hide()
-	$HighScores/SeventhPosition.hide()
-	$HighScores/EighthPosition.hide()
-	$HighScores/NinthPosition.hide()
-	$HighScores/TenthPosition.hide()
+	$GameOver/HighScoresButton.hide()		
+		
+func _initialize_game():
+	_hide_high_score_screen()
+	_show_game_scene()
+	_hide_game_over_screen()
 	_instance_agujeros()
 	_instance_rombitos()
 	$RombitosTimer.start()
@@ -158,39 +182,18 @@ func _initialize_game():
 func _triangulo_touched(body):
 	if(body.name == "Violeta"):
 		_game_over()
-
-func _on_Button_pressed():
-	_ready()
-
-
-func _on_Button2_pressed():
-	$GameOver/PlayAgainButton.hide()
-	$GameOver/GameOverBackground.hide()
-	$GameOver/HighScoresButton.hide()
+		
+func _show_high_score_screen():
 	$HighScores/HighScoreBackground.show()
 	$HighScores/PlayAgainButton.show()
 	$HighScores/HighScores.show()
-	$HighScores/FirstPosition/Score.text = str(maxScores[0])
-	$HighScores/FirstPosition.show()
-	$HighScores/SecondPosition/Score.text = str(maxScores[1])
-	$HighScores/SecondPosition.show()
-	$HighScores/ThirdPosition/Score.text = str(maxScores[2])
-	$HighScores/ThirdPosition.show()
-	$HighScores/FourthPosition/Score.text = str(maxScores[3])
-	$HighScores/FourthPosition.show()
-	$HighScores/FifthPosition/Score.text = str(maxScores[4])
-	$HighScores/FifthPosition.show()
-	$HighScores/SixthPosition/Score.text = str(maxScores[5])
-	$HighScores/SixthPosition.show()
-	$HighScores/SeventhPosition/Score.text = str(maxScores[6])
-	$HighScores/SeventhPosition.show()
-	$HighScores/EighthPosition/Score.text = str(maxScores[7])
-	$HighScores/EighthPosition.show()
-	$HighScores/NinthPosition/Score.text = str(maxScores[8])
-	$HighScores/NinthPosition.show()
-	$HighScores/TenthPosition/Score.text = str(maxScores[9])
-	$HighScores/TenthPosition.show()
-
+	for i in range(0, 9):
+		high_score_position_labels[i].show()
+		high_score_position_text_labels[i].text = str(max_scores[i])
 
 func _on_PlayAgainButton_pressed():
 	_ready()
+
+func _on_HighScoresButton_pressed():
+	_hide_game_over_screen()
+	_show_high_score_screen()

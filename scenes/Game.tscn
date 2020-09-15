@@ -382,5 +382,7 @@ __meta__ = {
 [connection signal="timeout" from="RombitosTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="TriangulosTimer" to="." method="_on_TriangulosTimer_timeout"]
 [connection signal="pressed" from="GameOver/PlayAgainButton" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="GameOver/PlayAgainButton" to="." method="_on_PlayAgainButton_pressed"]
 [connection signal="pressed" from="GameOver/HighScoresButton" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="GameOver/HighScoresButton" to="." method="_on_HighScoresButton_pressed"]
 [connection signal="pressed" from="HighScores/PlayAgainButton" to="." method="_on_PlayAgainButton_pressed"]
