@@ -8,13 +8,12 @@ extends KinematicBody2D
 const pointer_treshold = 50.0
 const velocidad_escalar = 200.0
 
-var velocidad = Vector2(0,0)
 var dash = false;
 var direccion;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position=velocidad
+	position=Vector2(0,0)
 	
 
 
