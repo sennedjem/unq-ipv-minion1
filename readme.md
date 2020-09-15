@@ -2,6 +2,10 @@
 
 ![Captura 1](https://github.com/sennedjem/unq-ipv-minion1/blob/master/capturas/CapturaDeJuego1.png)
 
+Link al juego: 
+
+https://sennedjem.github.io/unq-ipv-minion1/
+
 ### Controles:
 
 El personaje se mueve siguiendo el puntero, apretando espacio el personaje aumenta el movimiento por 0.4 segundos pero apuntando hacia la ultima dirección
