@@ -101,7 +101,9 @@ func _on_Timer_timeout():
 func _on_TriangulosTimer_timeout():
 	if(_full_triangles()):
 		_delete_older_triangle()
+		pass
 	else:	
+		pass
 		_instance_triangle()
 
 func _full_triangles():

@@ -44,6 +44,7 @@ wait_time = 0.4
 
 [node name="VioletaSprite" type="AnimatedSprite" parent="Violeta"]
 position = Vector2( -0.104212, 0.202454 )
+rotation = 0.53058
 scale = Vector2( 0.242357, 0.233737 )
 frames = SubResource( 1 )
 
@@ -381,8 +382,6 @@ __meta__ = {
 [connection signal="timeout" from="Violeta/Dash" to="Violeta" method="_on_Dash_timeout"]
 [connection signal="timeout" from="RombitosTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="TriangulosTimer" to="." method="_on_TriangulosTimer_timeout"]
-[connection signal="pressed" from="GameOver/PlayAgainButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="GameOver/PlayAgainButton" to="." method="_on_PlayAgainButton_pressed"]
-[connection signal="pressed" from="GameOver/HighScoresButton" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="GameOver/HighScoresButton" to="." method="_on_HighScoresButton_pressed"]
 [connection signal="pressed" from="HighScores/PlayAgainButton" to="." method="_on_PlayAgainButton_pressed"]

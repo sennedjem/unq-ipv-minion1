@@ -15,7 +15,7 @@ var direccion;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	position=velocidad
-	pass # Replace with function body.
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,10 +25,12 @@ func _process(delta):
 	if puntero.length() > pointer_treshold:
 		if !dash:
 			direccion = puntero.normalized()
+			$VioletaSprite.look_at(get_global_mouse_position())
 		else:
 			velocidad = velocidad *3
-		position += direccion * (velocidad) * delta 
-
+		var position_to = direccion * (velocidad) * delta 	
+		position += position_to
+				
 func _input(ev):
 	if ev is InputEventKey and ev.scancode == 32:
 		if(!dash):
